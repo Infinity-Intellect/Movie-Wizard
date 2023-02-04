@@ -6,19 +6,18 @@ import { getMoviesByTitle } from './api';
 import './App.css';
 import { MoviesList } from './components/MoviesList';
 import { SearchBar } from './components/SearchBar';
-import { searchResult } from './mockData';
 import { Movie } from './models/movies';
 import { Default, SearchResponse } from './models/responses';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 function App() {
 
-  const [sortedMovies, setSortedMovies] = useState(searchResult.Search)
+  const [sortedMovies, setSortedMovies] = useState<Movie[]>([])
   const [isFetchingData, setIsFetchingData] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
   const [page, setPage] = useState(1);
-  const [searchResponse, setSearchResponse] = useState({
-    Search: new Array(),
+  const [searchResponse, setSearchResponse] = useState<SearchResponse>({
+    Search: [],
     totalResults: "0",
     Response: "False"
   })
@@ -102,7 +101,7 @@ function App() {
     <Container>
       <Grid container spacing={2}>
         <Grid item xs={12} display="flex" justifyContent="center">
-          <Typography gutterBottom color="primary" variant="h3" component="div" sx={{textDecoration:"underline"}}>
+          <Typography gutterBottom color="primary" variant="h3" component="div" sx={{ textDecoration: "underline" }}>
             Movie Wizard
           </Typography>
         </Grid>
