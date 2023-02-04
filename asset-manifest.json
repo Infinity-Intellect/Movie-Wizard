@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Movie-Wizard/static/css/main.31d6cfe0.css",
-    "main.js": "/Movie-Wizard/static/js/main.a9d56d67.js",
+    "main.js": "/Movie-Wizard/static/js/main.2d766a69.js",
     "static/js/787.9c53723e.chunk.js": "/Movie-Wizard/static/js/787.9c53723e.chunk.js",
     "index.html": "/Movie-Wizard/index.html",
-    "main.a9d56d67.js.map": "/Movie-Wizard/static/js/main.a9d56d67.js.map",
+    "main.2d766a69.js.map": "/Movie-Wizard/static/js/main.2d766a69.js.map",
     "787.9c53723e.chunk.js.map": "/Movie-Wizard/static/js/787.9c53723e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.a9d56d67.js"
+    "static/js/main.2d766a69.js"
   ]
 }
