@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/movie-wizard/static/css/main.31d6cfe0.css",
+    "main.js": "/movie-wizard/static/js/main.ab214902.js",
+    "static/js/787.9c53723e.chunk.js": "/movie-wizard/static/js/787.9c53723e.chunk.js",
+    "index.html": "/movie-wizard/index.html",
+    "main.ab214902.js.map": "/movie-wizard/static/js/main.ab214902.js.map",
+    "787.9c53723e.chunk.js.map": "/movie-wizard/static/js/787.9c53723e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.ab214902.js"
+  ]
+}
