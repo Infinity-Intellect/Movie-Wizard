@@ -1,7 +1,7 @@
 {
   "name": "movie-wizard",
   "version": "0.1.0",
-  "homepage": "https://infinity-intellect.github.io/movie-wizard",
+  "homepage": "https://infinity-intellect.github.io/Movie-Wizard",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",

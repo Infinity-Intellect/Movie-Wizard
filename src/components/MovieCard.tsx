@@ -37,8 +37,8 @@ export function MovieCard({movie, handleDialogOpen}: MovieCardProps) {
       <CardMedia component="img"
         image={movie.Poster}
         alt={`Movie Poster of ${movie.Title}`}
-        height={250}
-        sx={{width: "200px"}}
+        height={window.innerWidth>445?250:150}
+        sx={{width: window.innerWidth>445 ? "200px" : "auto"}}
       />
     </Grid>
     <Divider orientation='vertical' flexItem>

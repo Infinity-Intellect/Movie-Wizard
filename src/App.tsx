@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button, createTheme, ThemeProvider, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/system';
 import React, { useState, useEffect, useCallback } from 'react';
@@ -9,6 +9,8 @@ import { SearchBar } from './components/SearchBar';
 import { Movie } from './models/movies';
 import { Default, SearchResponse } from './models/responses';
 import LoadingButton from '@mui/lab/LoadingButton';
+import theme from './mui-theme/theme';
+
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
     totalResults: "0",
     Response: "False"
   })
-  const [searchTerm, setSearchTerm] = useState("ten");
+  const [searchTerm, setSearchTerm] = useState("one");
 
   const sortMovies = (order: "asc" | "desc") => {
     let newMovies = [...sortedMovies]
@@ -98,32 +100,34 @@ function App() {
   }, [searchResponse])
 
   return (
-    <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12} display="flex" justifyContent="center">
-          <Typography gutterBottom color="primary" variant="h3" component="div" sx={{ textDecoration: "underline" }}>
-            Movie Wizard
-          </Typography>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Grid container spacing={2}>
+          <Grid item xs={12} display="flex" justifyContent="center">
+            <Typography gutterBottom color="primary" variant="h3" component="div" sx={{ textDecoration: "underline" }}>
+              Movie Wizard
+            </Typography>
+          </Grid>
+          <Grid item xs={12} display="flex" justifyContent="center">
+            <SearchBar loading={isFetchingData} onSearchClick={fetchMoviesGivenTitle} />
+          </Grid>
+          {!errorMessage && <Grid item xs={12}>
+            <Button onClick={() => { sortMovies("asc") }}>Sort by Year ↑</Button>
+            <Button onClick={() => { sortMovies("desc") }} sx={{ marginLeft: '10px' }}>Sort by Year ↓</Button>
+          </Grid>}
+          <Grid item xs={12}>
+            {!errorMessage && <MoviesList movies={sortedMovies} />}
+          </Grid>
+          <Grid item xs={12}>
+            {!errorMessage && (page * 10 < parseInt(searchResponse.totalResults)) &&
+              <LoadingButton loading={isFetchingData} variant="contained" onClick={handleLoadMoreClick}>
+                Load More
+              </LoadingButton>}
+            {errorMessage && <h2 style={{ color: 'red' }}>{errorMessage}</h2>}
+          </Grid>
         </Grid>
-        <Grid item xs={12} display="flex" justifyContent="center">
-          <SearchBar loading={isFetchingData} onSearchClick={fetchMoviesGivenTitle} />
-        </Grid>
-        {!errorMessage && <Grid item xs={12}>
-          <Button onClick={() => { sortMovies("asc") }}>Sort by Year ↑</Button>
-          <Button onClick={() => { sortMovies("desc") }} sx={{ marginLeft: '10px' }}>Sort by Year ↓</Button>
-        </Grid>}
-        <Grid item xs={12}>
-          {!errorMessage && <MoviesList movies={sortedMovies} />}
-        </Grid>
-        <Grid item xs={12}>
-          {!errorMessage && (page * 10 < parseInt(searchResponse.totalResults)) &&
-            <LoadingButton loading={isFetchingData} variant="contained" onClick={handleLoadMoreClick}>
-              Load More
-            </LoadingButton>}
-          {errorMessage && <h2 style={{ color: 'red' }}>{errorMessage}</h2>}
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 }
 
