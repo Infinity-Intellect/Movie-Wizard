@@ -1,5 +1,5 @@
 # Movie-Wizard
-This application displays movie data from omdbapi.com. The movies are sortable by year, and can clicked to get a detailed synopsis.
+This application displays movie data from omdbapi.com. The movies are sortable by year, and can be clicked upon to get a detailed synopsis.
 
 # Steps to Run Locally
 Once forked and cloned from Github, please follow the below steps
