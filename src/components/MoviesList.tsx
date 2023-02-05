@@ -12,10 +12,17 @@ export function MoviesList({movies}: MoviesListProps) {
   const [selectedMovie, setSelectedMovie] = useState<MovieDetail|null>(null)
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  /**
+   * Method to handle the close of dialog
+   */
   const handleDialogClose = () => {
     setDialogOpen(false)
   }
 
+  /**
+   * Method to handle the open of dialog
+   * @param detailedMovie The movie detail object
+   */
   const handleDialogOpen = (detailedMovie: MovieDetail) => {
     setSelectedMovie(detailedMovie)
     setDialogOpen(true)

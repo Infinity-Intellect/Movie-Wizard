@@ -14,6 +14,10 @@ export function MovieCard({movie, handleDialogOpen}: MovieCardProps) {
   
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Method to get movie detail by passing imdbID
+   * @param movie The movie for which details are to be fetched
+   */
   const getMovieDetail = (movie: Movie) => {
     setLoading(true)
     getMovieDetailsById(movie.imdbID).then((response: Default & MovieDetail) => {

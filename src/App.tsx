@@ -25,6 +25,10 @@ function App() {
   })
   const [searchTerm, setSearchTerm] = useState("one");
 
+  /**
+   * Method to sort the movies in given order
+   * @param order The order in which to sort the movies by Year
+   */
   const sortMovies = (order: "asc" | "desc") => {
     let newMovies = [...sortedMovies]
     let moviesAfterSorting = newMovies.sort((movie1: Movie, movie2: Movie) => {
@@ -36,10 +40,18 @@ function App() {
     setSortedMovies(moviesAfterSorting)
   }
 
+  /**
+   * Method to clear state before making a new search
+   */
   const clearState = () => {
     setErrorMessage("");
     setPage(1);
   }
+
+  /**
+   * Method to fetch movies given the title
+   * @param title The title of the movie to fetch
+   */
   const fetchMoviesGivenTitle = (title: string) => {
     clearState();
     setIsFetchingData(true);
@@ -62,6 +74,9 @@ function App() {
     })
   }
 
+  /**
+   * Method to load the next 10 movies for the given title
+   */
   const loadNextMovies = useCallback((title: string) => {
     setIsFetchingData(true)
     getMoviesByTitle(title, page).then((response: Default & SearchResponse) => {
@@ -81,20 +96,32 @@ function App() {
     })
   }, [page, searchResponse])
 
+  /**
+   * Method to handle the click event of "Load More" button
+   */
   const handleLoadMoreClick = () => {
     setPage((previousPage) => previousPage + 1)
   }
 
+  /**
+   * Hook to fetch the inital movies to load
+   */
   useEffect(() => {
     fetchMoviesGivenTitle(searchTerm)
   }, [])
 
+  /**
+   * Hook that loads next set of movies whenever page changes
+   */
   useEffect(() => {
     if (page > 1) {
       loadNextMovies(searchTerm);
     }
   }, [page, loadNextMovies, searchTerm])
 
+  /**
+   * Hook to reset the 'sortedMovies' when next set of movies are loaded
+   */
   useEffect(() => {
     setSortedMovies(searchResponse.Search);
   }, [searchResponse])

@@ -12,6 +12,10 @@ export function SearchBar({ loading, onSearchClick }: SearchBarProps) {
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  /**
+   * Method to handle when character is entered in the input text field
+   * @param event The keyup event object
+   */
   const handleInputChange = (event: any) => {
     if(event.key === 'Enter' && searchTerm) {
       onSearchClick(searchTerm)
