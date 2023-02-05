@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardMedia, Divider, Grid, Typography } from '@mui/material'
+import { Card, CardActions, CardContent, CardMedia, Divider, Grid, Typography, useMediaQuery } from '@mui/material'
 import React, {useState} from 'react'
 import { Movie, MovieDetail } from '../models/movies'
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -13,6 +13,7 @@ interface MovieCardProps {
 export function MovieCard({movie, handleDialogOpen}: MovieCardProps) {
   
   const [loading, setLoading] = useState(false);
+  const isMobileScreen = useMediaQuery('(max-width:445px)')
 
   /**
    * Method to get movie detail by passing imdbID
@@ -41,8 +42,8 @@ export function MovieCard({movie, handleDialogOpen}: MovieCardProps) {
       <CardMedia component="img"
         image={movie.Poster}
         alt={`Movie Poster of ${movie.Title}`}
-        height={window.innerWidth>445?250:150}
-        sx={{width: window.innerWidth>445 ? "200px" : "auto"}}
+        height={isMobileScreen?150:250}
+        sx={{width: isMobileScreen ? "auto" : "200px"}}
       />
     </Grid>
     <Divider orientation='vertical' flexItem>
@@ -60,7 +61,7 @@ export function MovieCard({movie, handleDialogOpen}: MovieCardProps) {
       <CardActions>
         <LoadingButton size="medium" variant="outlined" color="primary"
         onClick={() => {getMovieDetail(movie)}} loading={loading}>
-          + Click to know more
+          {isMobileScreen? "+ Know more" : "+ Click to know more"}
         </LoadingButton>
       </CardActions>
     </Grid>

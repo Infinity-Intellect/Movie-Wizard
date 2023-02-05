@@ -1,4 +1,4 @@
-import { Button, createTheme, ThemeProvider, Typography } from '@mui/material';
+import { Button, ThemeProvider, Typography, useMediaQuery } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/system';
 import React, { useState, useEffect, useCallback } from 'react';
@@ -24,6 +24,7 @@ function App() {
     Response: "False"
   })
   const [searchTerm, setSearchTerm] = useState("one");
+  const isMobileScreen = useMediaQuery('(max-width:445px)')
 
   /**
    * Method to sort the movies in given order
@@ -139,8 +140,8 @@ function App() {
             <SearchBar loading={isFetchingData} onSearchClick={fetchMoviesGivenTitle} />
           </Grid>
           {!errorMessage && <Grid item xs={12}>
-            <Button onClick={() => { sortMovies("asc") }}>Sort by Year ↑</Button>
-            <Button onClick={() => { sortMovies("desc") }} sx={{ marginLeft: '10px' }}>Sort by Year ↓</Button>
+            <Button size={isMobileScreen?"small":"medium"} onClick={() => { sortMovies("asc") }}>Sort by Year ↑</Button>
+            <Button size={isMobileScreen?"small":"medium"} onClick={() => { sortMovies("desc") }} sx={{ marginLeft: '10px' }}>Sort by Year ↓</Button>
           </Grid>}
           <Grid item xs={12}>
             {!errorMessage && <MoviesList movies={sortedMovies} />}
